@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>AUTHENTIQ | AI 商品驗真</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090909;color:#f5f1e8;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif}
+header{padding:24px 20px;border-bottom:1px solid #393126}
+.logo{font-size:25px;letter-spacing:4px;font-weight:850;color:#d9b879}
+.sub{font-size:10px;letter-spacing:1.5px;color:#aaa;margin-top:7px}
+main{max-width:540px;margin:auto;padding:24px 18px 50px}
+.tag{color:#d9b879;font-size:12px;letter-spacing:2px}
+h1{font-size:30px;line-height:1.45;margin:12px 0}
+p{color:#aaa;font-size:14px;line-height:1.8}
+.panel{border:1px solid #393126;border-radius:16px;padding:18px;margin-top:22px;background:#111}
+label{display:block;font-size:13px;margin:17px 0 8px}
+select,input{width:100%;padding:13px;background:#1c1c1c;color:#fff;border:1px solid #49443a;border-radius:9px;font-size:15px}
+button{width:100%;padding:15px;border:0;border-radius:9px;background:#d9b879;color:#111;font-weight:800;font-size:15px;margin-top:18px}
+#result{display:none;white-space:pre-wrap;line-height:1.8;font-size:14px;color:#eee}
+.note{font-size:11px;color:#888}
+.pill{display:inline-block;border:1px solid #64543a;border-radius:30px;padding:6px 10px;color:#d9b879;font-size:11px;margin:3px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">AUTHENTIQ</div>
+  <div class="sub">GLOBAL LUXURY & STREETWEAR AUTHENTICATION</div>
+</header>
+
+<main>
+  <div class="tag">AI AUTHENTICATION · BETA</div>
+  <h1>讓每一件單品，<br>都有值得信任的依據。</h1>
+  <p>為名牌、潮牌服飾與鞋款建立更透明的初步驗真流程。</p>
+
+  <span class="pill">多品牌</span>
+  <span class="pill">鞋款與服飾</span>
+  <span class="pill">可解釋報告</span>
+
+  <section class="panel">
+    <h2>開始商品檢查</h2>
+    <p>填寫商品資料並選擇照片，產生初步檢查紀錄。</p>
+
+    <label for="brand">品牌</label>
+    <select id="brand">
+      <option>Nike</option>
+      <option>adidas</option>
+      <option>New Balance</option>
+      <option>ASICS</option>
+      <option>Converse</option>
+      <option>Supreme</option>
+      <option>Stüssy</option>
+      <option>Chrome Hearts</option>
+      <option>Stone Island</option>
+      <option>OFF-WHITE</option>
+      <option>Balenciaga</option>
+      <option>Prada</option>
+      <option>Louis Vuitton</option>
+      <option>Gucci</option>
+      <option>其他品牌</option>
+    </select>
+
+    <label for="kind">商品類別</label>
+    <select id="kind">
+      <option>鞋款</option>
+      <option>上衣</option>
+      <option>外套</option>
+      <option>褲子</option>
+      <option>包款</option>
+      <option>配件</option>
+    </select>
+
+    <label for="model">商品型號或名稱（選填）</label>
+    <input id="model" type="text" placeholder="例如：Air Jordan 1 Retro">
+
+    <label for="source">購買來源</label>
+    <select id="source">
+      <option>官方或授權店</option>
+      <option>二手交易平台</option>
+      <option>實體二手店</option>
+      <option>社群賣家</option>
+      <option>朋友轉售</option>
+      <option>其他／不確定</option>
+    </select>
+
+    <label for="photos">選擇商品照片（可多張）</label>
+    <input id="photos" type="file" accept="image/*" multiple>
+
+    <p>建議提供商品整體、品牌標籤、鞋標或洗標、縫線、Logo、內裡及購買憑證照片。憑證請先遮住個人資料。</p>
+
+    <button type="button" onclick="makeReport()">產生初步檢查報告</button>
+
+    <div id="result" class="panel" aria-live="polite"></div>
+    <button id="copyBtn" type="button" style="display:none" onclick="copyReport()">複製檢查報告</button>
+  </section>
+
+  <section class="panel">
+    <h2>AUTHENTIQ 的驗真原則</h2>
+    <p>01｜觀察商品細節，不只看 Logo。</p>
+    <p>02｜盡可能比對型號、年份與可靠來源。</p>
+    <p>03｜證據不足時，明確告知無法判定。</p>
+    <p>04｜高價商品可再交由真人專家複核。</p>
+  </section>
+
+  <p class="note">目前為前端展示原型，尚未連接真正的 AI 圖像辨識、品牌資料庫或真人專家服務。照片只在此頁選取，不會自動上傳。本頁產生的是資料紀錄與補拍建議，不是商品真偽結論。</p>
+</main>
+
+<script>
+let reportText = "";
+
+function makeReport(){
+  const brand = document.getElementById("brand").value;
+  const kind = document.getElementById("kind").value;
+  const model = document.getElementById("model").value.trim() || "尚未提供";
+  const source = document.getElementById("source").value;
+  const files = Array.from(document.getElementById("photos").files);
+  const result = document.getElementById("result");
+  const copyBtn = document.getElementById("copyBtn");
+
+  const photoNames = files.length
+    ? files.map((f,i) => (i+1) + ". " + f.name).join("\n")
+    : "尚未選擇照片";
+
+  const advice = files.length < 3
+    ? "• 建議補拍至少 3 張清晰照片。\n• 拍攝商品整體、標籤與關鍵細節。"
+    : "• 確認品牌標籤、型號與細節都清晰可讀。\n• 進一步對照官方產品資訊及可靠來源。";
+
+  reportText =
+`AUTHENTIQ｜商品初步檢查紀錄
+
+品牌：${brand}
+商品類別：${kind}
+商品型號／名稱：${model}
+購買來源：${source}
+選取照片數量：${files.length}
+
+照片清單：
+${photoNames}
+
+目前狀態：證據不足，暫時無法判定。
+
+建議下一步：
+${advice}
+• 保留訂單、收據與賣家資訊。
+• 高價商品建議尋求可信的真人專家複核。
+
+重要聲明：
+本頁尚未執行 AI 圖像分析，也沒有比對品牌資料庫。
+本報告不能證明商品為真品或仿品。`;
+
+  result.textContent = reportText;
+  result.style.display = "block";
+  copyBtn.style.display = "block";
+  result.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+async function copyReport(){
+  try{
+    await navigator.clipboard.writeText(reportText);
+    document.getElementById("copyBtn").textContent = "已複製報告";
+  }catch(e){
+    window.prompt("請手動複製以下報告：",reportText);
+  }
+}
+</script>
+</body>
+</html>
