@@ -1,174 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090909">
-<title>AUTHENTIQ｜AI 商品驗真</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AUTHENTIQ｜潮流驗真</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#090909;color:#f5f1e8;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif}
-header{padding:24px 20px;border-bottom:1px solid #393126}
-.logo{font-size:25px;letter-spacing:4px;font-weight:800;color:#d9b879}
-.sub{font-size:10px;letter-spacing:1.5px;color:#aaa;margin-top:8px}
-main{max-width:540px;margin:auto;padding:24px 18px 50px}
-.tag{color:#d9b879;font-size:12px;letter-spacing:2px}
-h1{font-size:30px;line-height:1.45;margin:12px 0}
-p{color:#aaa;font-size:14px;line-height:1.8}
-.pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
-.pill{border:1px solid #64543a;border-radius:30px;padding:8px 12px;color:#d9b879;font-size:12px}
-.panel{border:1px solid #393126;border-radius:20px;padding:22px 18px;margin-top:22px;background:#111}
-h2{font-size:23px;margin:0 0 8px}
-.upload{display:block;border:1px dashed #8b744a;border-radius:16px;padding:30px 15px;text-align:center;background:#171614;margin:18px 0;cursor:pointer}
-.upload strong{display:block;font-size:18px;margin-bottom:10px}
-.upload span{font-size:13px;color:#aaa;line-height:1.8}
-input[type=file]{display:none}
-button{width:100%;padding:15px;border:0;border-radius:12px;background:#d9b879;color:#090909;font-size:16px;font-weight:800;margin-top:12px;cursor:pointer}
-button:disabled{opacity:.5}
-.field{margin-top:17px}
-label{display:block;color:#ddd;font-size:13px;margin-bottom:8px}
-input[type=text],select{width:100%;padding:13px;border:1px solid #494136;border-radius:10px;background:#1c1c1c;color:white;font-size:15px}
-#preview{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-#preview img{width:100%;height:110px;object-fit:cover;border-radius:8px;border:1px solid #393126}
-#result{display:none;white-space:pre-wrap;line-height:1.9;color:#eee;font-size:14px;margin-top:16px}
-.notice{font-size:11px;color:#888;margin-top:18px}
-.status{color:#d9b879;font-size:12px}
-footer{text-align:center;color:#666;font-size:11px;padding:20px}
+:root{--bg:#0b0b0d;--panel:#151519;--line:#2b2b31;--text:#f6f6f7;--muted:#a5a5ae;--gold:#d9bd82;--green:#55c58b;--orange:#f2b765}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{padding:22px 18px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:980px;margin:auto}
+.brand{font-weight:900;letter-spacing:2px;font-size:20px}.brand span{color:var(--gold)}.sub{font-size:11px;color:var(--muted);letter-spacing:1px;margin-top:4px}
+.pill{border:1px solid #3b3b41;color:var(--gold);border-radius:99px;padding:7px 10px;font-size:11px;white-space:nowrap}
+main{max-width:980px;margin:auto;padding:22px 16px 40px}.hero{padding:22px 0 26px}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px}.hero h1{font-size:clamp(29px,6vw,46px);line-height:1.12;margin:10px 0}.hero p{color:var(--muted);line-height:1.7;max-width:620px;margin-bottom:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}.card h2{font-size:17px;margin:0 0 14px}.label{display:block;font-size:12px;color:var(--muted);margin:15px 0 7px}
+select,input,textarea{width:100%;background:#0d0d10;color:var(--text);border:1px solid #393940;border-radius:11px;padding:12px;font-size:14px;outline:none}input[type=file]{padding:10px}
+.drop{border:1px dashed #55555e;border-radius:14px;padding:18px;text-align:center;background:#101014}.drop strong{display:block;margin:8px 0}.drop p{color:var(--muted);font-size:12px;line-height:1.5}.preview{display:none;width:100%;max-height:250px;object-fit:contain;border-radius:12px;margin-top:12px;background:#080809}
+button{border:0;border-radius:12px;padding:13px 16px;font-weight:750;font-size:14px;cursor:pointer}.primary{background:var(--gold);color:#17130b;width:100%;margin-top:16px}.secondary{background:#222228;color:white;border:1px solid #414149}.small{font-size:12px;color:var(--muted);line-height:1.6}.features{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.feature{font-size:11px;border:1px solid var(--line);border-radius:99px;padding:7px 10px;color:#d3d3d8}
+.result{margin-top:16px;display:none}.result-head{display:flex;align-items:center;gap:14px}.score{width:76px;height:76px;border-radius:50%;border:4px solid var(--orange);display:grid;place-items:center;font-size:20px;font-weight:800;flex-shrink:0}.status{font-weight:800;font-size:18px}.status small{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-top:6px}.notice{margin-top:15px;padding:12px;border-radius:11px;background:#272116;color:#f4d8a4;font-size:12px;line-height:1.6}.checklist{padding:0;list-style:none}.checklist li{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;display:flex;gap:8px}.checklist li:last-child{border:0}.report-text{white-space:pre-wrap;overflow-wrap:anywhere;background:#0d0d10;border:1px solid #393940;border-radius:12px;padding:14px;line-height:1.75;font-size:13px;margin-top:14px}.check{color:var(--green)}.unknown{color:var(--orange)}.bottom{margin-top:16px;color:var(--muted);font-size:11px;line-height:1.7;text-align:center}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{padding-top:18px}.card{padding:15px}header{padding:17px 15px}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">AUTHENTIQ</div>
-  <div class="sub">GLOBAL LUXURY & STREETWEAR AUTHENTICATION</div>
-</header>
+<header><div><div class="brand">AUTHENT<span>I</span>Q</div><div class="sub">GLOBAL STREETWEAR AUTHENTICATION</div></div><div class="pill">AI 驗真 · 第一版</div></header>
 <main>
-  <div class="tag">AI AUTHENTICATION · BETA</div>
-  <h1>不知道品牌？<br>交給 AI 辨識。</h1>
-  <p>上傳商品照片，開始品牌辨識與初步檢查。無須手動選擇品牌，讓流程更簡單。</p>
-  <div class="pills">
-    <span class="pill">自動辨識品牌</span>
-    <span class="pill">鞋款與服飾</span>
-    <span class="pill">可解釋報告</span>
-  </div>
-
-  <section class="panel">
-    <h2>商品照片檢查</h2>
-    <p>建議上傳商品整體、Logo、內標、洗標及細節照片，資訊越完整越容易進行後續分析。</p>
-
-    <label class="upload" for="photos">
-      <strong>＋ 選擇商品照片</strong>
-      <span>點此從手機相簿選取<br>支援一次選擇多張照片</span>
-    </label>
-    <input id="photos" type="file" accept="image/*" multiple>
-    <div id="preview"></div>
-    <p id="photoCount" class="status">尚未選擇照片</p>
-
-    <div class="field">
-      <label for="category">商品類別（選填）</label>
-      <select id="category">
-        <option>讓系統嘗試辨識</option>
-        <option>鞋款</option>
-        <option>上衣／T 恤</option>
-        <option>外套／帽 T</option>
-        <option>褲子</option>
-        <option>包包／配件</option>
-        <option>精品／其他</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="source">購買來源（選填）</label>
-      <select id="source">
-        <option>尚未提供</option>
-        <option>品牌官方或授權店</option>
-        <option>實體二手店</option>
-        <option>網路二手平台</option>
-        <option>個人賣家</option>
-        <option>其他來源</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="model">商品名稱或型號（選填）</label>
-      <input id="model" type="text" placeholder="不知道可以留白">
-    </div>
-
-    <button id="analyze">產生初步檢查報告</button>
-    <div id="result"></div>
-    <button id="copy" style="display:none;background:#25221c;color:#d9b879">複製報告文字</button>
-
-    <div class="notice">
-      重要說明：目前是前端展示版，尚未連接真正的 AI 圖像辨識服務。此報告不會判定商品真偽，也不會將示範結果冒充為 AI 分析。
-    </div>
-  </section>
+<section class="hero"><div class="eyebrow">REAL STYLE. REAL VALUE.</div><h1>讓每一件潮流單品，<br>買得更有底氣。</h1><p>上傳商品照片，整理品牌、款式與細節資訊，取得初步檢查報告。專家複核功能將於後續版本推出。</p>
+<div class="features"><span class="feature">名牌與潮牌</span><span class="feature">多角度照片</span><span class="feature">疑點整理</span><span class="feature">驗真紀錄（本機示範）</span></div></section>
+<div class="grid">
+<section class="card"><h2>01 ／ 商品資料</h2>
+<label class="label" for="brand">品牌</label><select id="brand"><option>Chrome Hearts</option><option>Supreme</option><option>BAPE</option><option>Nike</option><option>adidas</option><option>Louis Vuitton</option><option>Gucci</option><option>Balenciaga</option><option>CELINE</option><option>Moncler</option><option>其他／不確定</option></select>
+<label class="label" for="category">商品類型</label><select id="category"><option>上衣／帽T</option><option>外套</option><option>褲子</option><option>球鞋</option><option>包包</option><option>帽子</option><option>配件</option></select>
+<label class="label" for="year">大約年份（選填）</label><input id="year" placeholder="例如：2022 或不確定">
+<label class="label" for="source">購買來源（選填）</label><select id="source"><option>二手平台／社團</option><option>品牌官方／專櫃</option><option>授權零售商</option><option>朋友轉售</option><option>其他／不確定</option></select>
+<label class="label" for="notes">其他資訊（選填）</label><textarea id="notes" rows="3" placeholder="款式名稱、型號、賣家描述等"></textarea>
+</section>
+<section class="card"><h2>02 ／ 上傳照片</h2><div class="drop"><div style="font-size:30px">⌁</div><strong>選擇商品照片</strong><p>建議拍攝正面、品牌標籤、洗標、Logo、車線與五金細節。照片越清楚，越有利於檢查。</p><input id="photos" type="file" accept="image/*" multiple><img id="preview" class="preview" alt="商品照片預覽"></div><p class="small">一次最多分析 4 張圖片。請勿上傳包含個人證件、住址等敏感資訊的照片。</p><button class="primary" id="analyze">開始 AI 初步檢查</button><p class="small">照片將送至 AUTHENTIQ AI API 產生初步外觀分析。請勿上傳證件、住址或其他敏感資訊；AI 報告不等同專業真偽鑑定。</p></section>
+</div>
+<section class="card result" id="result"><h2>03 ／ 初步檢查報告</h2><div class="result-head"><div class="score" id="score">—</div><div><div class="status" id="status">檢查完成</div><small id="summary" class="small"></small></div></div><ul class="checklist" id="checks"></ul><div class="notice" id="notice"></div><pre class="report-text" id="reportText" style="display:none"></pre><button class="secondary" id="reset">重新檢查</button></section>
+<div class="bottom">AUTHENTIQ 原型版 · AI 檢查僅供參考，不構成正品保證。真正驗真需結合款式資料、實物細節與可靠的專業判斷。</div>
 </main>
-<footer>AUTHENTIQ · VERIFY WITH EVIDENCE</footer>
-
 <script>
-const photos=document.getElementById('photos');
-const preview=document.getElementById('preview');
-const photoCount=document.getElementById('photoCount');
-const result=document.getElementById('result');
-const analyze=document.getElementById('analyze');
-const copy=document.getElementById('copy');
+const API_URL = 'https://authentiq-api.arq3456.workers.dev/analyze';
+const fileInput = document.getElementById('photos');
+const preview = document.getElementById('preview');
+const analyzeButton = document.getElementById('analyze');
+const resultSection = document.getElementById('result');
+const reportText = document.getElementById('reportText');
 
-photos.addEventListener('change',()=>{
-  preview.innerHTML='';
-  const files=Array.from(photos.files||[]);
-  photoCount.textContent=files.length
-    ? '已選擇 '+files.length+' 張照片'
-    : '尚未選擇照片';
-  files.forEach(file=>{
-    if(!file.type.startsWith('image/')) return;
-    const img=document.createElement('img');
-    img.alt='商品照片預覽';
-    img.src=URL.createObjectURL(file);
-    preview.appendChild(img);
-  });
-  result.style.display='none';
-  copy.style.display='none';
-});
-
-analyze.addEventListener('click',()=>{
-  if(!photos.files||photos.files.length===0){
-    alert('請先選擇至少一張商品照片。');
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  if (!file) {
+    preview.style.display = 'none';
     return;
   }
-  const category=document.getElementById('category').value;
-  const source=document.getElementById('source').value;
-  const model=document.getElementById('model').value.trim();
-  result.textContent=
-`AUTHENTIQ｜商品初步檢查紀錄
-
-照片數量：${photos.files.length} 張
-商品類別：${category}
-購買來源：${source}
-商品名稱／型號：${model||'未提供'}
-
-目前狀態：等待真正的 AI 分析
-
-本版本已收到照片並建立檢查紀錄，但尚未連接 AI 圖像辨識服務，因此無法可靠地識別品牌、確認型號或判斷真偽。
-
-建議補充的照片：
-1. 商品正面與背面全貌
-2. Logo 與印刷細節
-3. 內標、洗標、鞋盒標籤或序號
-4. 縫線、材質與做工近照
-
-下一階段將接入 AI，嘗試辨識品牌與商品，再依可靠參考資料比對特徵。任何結論都應附上依據與不確定性；資料不足時不應假裝確定。`;
-  result.style.display='block';
-  copy.style.display='block';
-  result.scrollIntoView({behavior:'smooth',block:'start'});
+  preview.src = URL.createObjectURL(file);
+  preview.style.display = 'block';
 });
 
-copy.addEventListener('click',async()=>{
-  try{
-    await navigator.clipboard.writeText(result.textContent);
-    alert('報告文字已複製。');
-  }catch(e){
-    alert('目前瀏覽器無法直接複製，請長按報告文字選取複製。');
+async function imageToDataUrl(file) {
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+    throw new Error('目前請使用 JPG、PNG 或 WebP 圖片。iPhone 的 HEIC 請先轉成 JPG 再上傳。');
+  }
+
+  let bitmap;
+  try {
+    bitmap = await createImageBitmap(file);
+  } catch (_) {
+    throw new Error('無法讀取這張圖片，請改用 JPG、PNG 或 WebP 格式。');
+  }
+
+  const maxSide = 1200;
+  const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+  canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.78);
+  if (dataUrl.length > 3900000) {
+    throw new Error('圖片仍然太大，請選擇較小的照片再試。');
+  }
+  return dataUrl;
+}
+
+function addReportLine(text, className = 'unknown') {
+  const li = document.createElement('li');
+  const icon = document.createElement('span');
+  icon.className = className;
+  icon.textContent = className === 'check' ? '✓' : '•';
+  const body = document.createElement('span');
+  body.textContent = text;
+  li.append(icon, body);
+  document.getElementById('checks').appendChild(li);
+}
+
+analyzeButton.addEventListener('click', async () => {
+  const files = Array.from(fileInput.files || []);
+  const brand = document.getElementById('brand').value;
+  const category = document.getElementById('category').value;
+  const year = document.getElementById('year').value.trim();
+  const source = document.getElementById('source').value;
+  const notes = document.getElementById('notes').value.trim();
+
+  if (!files.length) {
+    alert('請先上傳至少一張商品照片。');
+    return;
+  }
+  if (files.length > 4) {
+    alert('目前一次最多分析 4 張照片，請減少照片數量後再試。');
+    return;
+  }
+
+  analyzeButton.disabled = true;
+  analyzeButton.textContent = 'AI 分析中，請稍候…';
+  document.getElementById('checks').replaceChildren();
+  reportText.style.display = 'none';
+  reportText.textContent = '';
+  resultSection.style.display = 'block';
+  document.getElementById('score').textContent = '…';
+  document.getElementById('status').textContent = '正在分析商品照片';
+  document.getElementById('summary').textContent = '照片會傳送至 AUTHENTIQ API 進行 AI 外觀分析。';
+  document.getElementById('notice').textContent = '分析結果僅供初步參考；AI 不能只憑照片保證真偽。';
+  resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  try {
+    const images = [];
+    for (const file of files) images.push(await imageToDataUrl(file));
+
+    const product = [
+      `品牌線索：${brand}`,
+      `款式／年份：${year || '未提供'}`,
+      `購買來源：${source}`,
+      `補充資訊：${notes || '未提供'}`
+    ].join('\n');
+
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category, product, images })
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || data.status !== 'success' || !data.report) {
+      const details = data.details ? `\n詳細資訊：${data.details}` : '';
+      throw new Error((data.error || `請求失敗（HTTP ${response.status}）`) + details);
+    }
+
+    document.getElementById('score').textContent = '待核';
+    document.getElementById('status').textContent = 'AI 初步分析完成';
+    document.getElementById('summary').textContent = `${brand}／${category} · ${images.length} 張照片`;
+    addReportLine('AI 已成功分析照片並產生報告。', 'check');
+    addReportLine('此報告為外觀分析，不代表已確認真品或假貨。', 'unknown');
+    reportText.textContent = data.report;
+    reportText.style.display = 'block';
+    document.getElementById('notice').textContent = '重要提醒：僅憑照片無法保證真偽。請依報告補拍細節，並在需要時尋求可靠的專業鑑定。';
+  } catch (error) {
+    document.getElementById('score').textContent = '—';
+    document.getElementById('status').textContent = '分析未完成';
+    document.getElementById('summary').textContent = '請依下方訊息排除問題後重試。';
+    addReportLine(error.message || '發生未知錯誤。', 'unknown');
+    document.getElementById('notice').textContent = '若出現額度、API 或連線錯誤，請保留錯誤內容以便排查；不要把 API 金鑰貼到網站或聊天中。';
+  } finally {
+    analyzeButton.disabled = false;
+    analyzeButton.textContent = '開始 AI 初步檢查';
   }
 });
+
+document.getElementById('reset').addEventListener('click', () => {
+  resultSection.style.display = 'none';
+  fileInput.value = '';
+  preview.style.display = 'none';
+  reportText.style.display = 'none';
+  reportText.textContent = '';
+  document.getElementById('brand').focus();
+});
 </script>
-</body>
-</html>
+</body></html>
