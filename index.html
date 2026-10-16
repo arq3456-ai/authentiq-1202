@@ -40,7 +40,8 @@ button{border:0;border-radius:12px;padding:13px 16px;font-weight:750;font-size:1
 <div class="features"><span class="feature">名牌與潮牌</span><span class="feature">多角度照片</span><span class="feature">疑點整理</span><span class="feature">驗真紀錄（本機示範）</span></div></section>
 <div class="grid">
 <section class="card"><h2>01 ／ 商品資料</h2>
-<label class="label" for="brand">品牌</label><select id="brand"><option>Chrome Hearts</option><option>Supreme</option><option>BAPE</option><option>Nike</option><option>adidas</option><option>Louis Vuitton</option><option>Gucci</option><option>Balenciaga</option><option>CELINE</option><option>Moncler</option><option>其他／不確定</option></select>
+<div class="label">品牌識別</div>
+<p class="small">無須手動選擇品牌，AUTHENTIQ AI 將根據商品照片自動識別品牌；若無法可靠識別，會明確標示，不會隨意猜測。</p>
 <label class="label" for="category">商品類型</label><select id="category"><option>上衣／帽T</option><option>外套</option><option>褲子</option><option>球鞋</option><option>包包</option><option>帽子</option><option>配件</option></select>
 <label class="label" for="year">大約年份（選填）</label><input id="year" placeholder="例如：2022 或不確定">
 <label class="label" for="source">購買來源（選填）</label><select id="source"><option>二手平台／社團</option><option>品牌官方／專櫃</option><option>授權零售商</option><option>朋友轉售</option><option>其他／不確定</option></select>
@@ -183,7 +184,7 @@ function addReportLine(text, className = 'unknown') {
 
 analyzeButton.addEventListener('click', async () => {
   const files = slotFiles.map((file, index) => file ? ({ file, label: photoSlots[index].title }) : null).filter(Boolean);
-  const brand = document.getElementById('brand').value;
+  const brand = '由 AI 根據商品照片自動識別';
   const category = document.getElementById('category').value;
   const year = document.getElementById('year').value.trim();
   const source = document.getElementById('source').value;
@@ -215,7 +216,7 @@ analyzeButton.addEventListener('click', async () => {
     for (const item of files) images.push(await imageToDataUrl(item.file));
 
     const product = [
-      `品牌線索：${brand}`,
+     '品牌識別：請先根據所有商品照片辨識品牌，並以可見標誌、文字或標籤作為依據；若無法可靠識別，請標示「無法確認品牌」，不得猜測。',
       `款式／年份：${year || '未提供'}`,
       `購買來源：${source}`,
       `補充資訊：${notes || '未提供'}`,
