@@ -1,423 +1,668 @@
+
 <!doctype html>
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AUTHENTIQ｜潮流驗真</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09090b">
+<meta name="description" content="AUTHENTIQ — 讓科技看見細節，讓真實擁有價值。">
+<title>AUTHENTIQ｜REAL STYLE. REAL VALUE.</title>
 <style>
-:root{--bg:#0b0b0d;--panel:#151519;--line:#2b2b31;--text:#f6f6f7;--muted:#a5a5ae;--gold:#d9bd82;--green:#55c58b;--orange:#f2b765}
+:root{color-scheme:dark;--bg:#09090b;--surface:#151519;--surface2:#101013;--stroke:#303037;--text:#f5f4f2;--muted:#acaab0;--gold:#d9bd86;--gold2:#f0d9a7;--danger:#ffaaa5}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{padding:22px 18px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:980px;margin:auto}
-.brand{font-weight:900;letter-spacing:2px;font-size:20px}
-.brand span{color:var(--gold)}
-.sub{font-size:11px;color:var(--muted);letter-spacing:1px;margin-top:4px}
-.pill{border:1px solid #3b3b41;color:var(--gold);border-radius:99px;padding:7px 10px;font-size:11px;white-space:nowrap}
-main{max-width:980px;margin:auto;padding:22px 16px 40px}
-.hero{padding:22px 0 26px}
-.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px}
-.hero h1{font-size:clamp(29px,6vw,46px);line-height:1.12;margin:10px 0}
-.hero p{color:var(--muted);line-height:1.7;max-width:620px;margin-bottom:0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}
-.card h2{font-size:17px;margin:0 0 14px}
-.label{display:block;font-size:12px;color:var(--muted);margin:15px 0 7px}
-select,input,textarea{width:100%;background:#0d0d10;color:var(--text);border:1px solid #393940;border-radius:11px;padding:12px;font-size:14px;outline:none}
-input[type=file]{padding:10px}
-.slot-intro{color:var(--muted);font-size:12px;line-height:1.6;margin:0 0 14px}
-.photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.photo-slot{position:relative;min-width:0;border:1px dashed #55555e;border-radius:12px;padding:10px;background:#101014;display:flex;flex-direction:column;gap:7px;min-height:170px}
-.photo-slot.filled{border-style:solid;border-color:#88734d}
-.slot-number{font-size:11px;color:var(--gold);letter-spacing:.5px}
-.slot-title{font-size:12px;font-weight:750;line-height:1.35;min-height:30px}
-.slot-desc{font-size:10px;color:var(--muted);line-height:1.4;min-height:28px}
-.slot-pick{display:block;text-align:center;background:#24242b;border:1px solid #42424a;border-radius:9px;padding:9px 6px;font-size:11px;font-weight:700;cursor:pointer;color:#f6f6f7}
-.slot-pick input{display:none}
-.slot-preview{display:none;width:100%;height:105px;object-fit:contain;border-radius:8px;background:#080809}
-.slot-remove{display:none;background:transparent;color:#ffb4a9;border:1px solid #65403c;padding:6px;font-size:11px;border-radius:8px}
-.photo-slot.filled .slot-preview,.photo-slot.filled .slot-remove{display:block}
-.photo-slot.filled .slot-desc{display:none}
-.photo-count{display:flex;justify-content:space-between;gap:8px;margin:12px 0;color:var(--muted);font-size:12px}
-button{border:0;border-radius:12px;padding:13px 16px;font-weight:750;font-size:14px;cursor:pointer}
-.primary{background:var(--gold);color:#17130b;width:100%;margin-top:16px}
-.secondary{background:#222228;color:white;border:1px solid #414149}
-.small{font-size:12px;color:var(--muted);line-height:1.6}
-.features{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.feature{font-size:11px;border:1px solid var(--line);border-radius:99px;padding:7px 10px;color:#d3d3d8}
-.result{margin-top:16px;display:none}
-.result-head{display:flex;align-items:center;gap:14px}
-.score{width:76px;height:76px;border-radius:50%;border:4px solid var(--orange);display:grid;place-items:center;font-size:20px;font-weight:800;flex-shrink:0}
-.status{font-weight:800;font-size:18px}
-.notice{margin-top:15px;padding:12px;border-radius:11px;background:#272116;color:#f4d8a4;font-size:12px;line-height:1.6}
-.checklist{padding:0;list-style:none}
-.checklist li{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;display:flex;gap:8px;overflow-wrap:anywhere}
-.checklist li:last-child{border:0}
-.report-text{white-space:pre-wrap;overflow-wrap:anywhere;background:#0d0d10;border:1px solid #393940;border-radius:12px;padding:14px;line-height:1.75;font-size:13px;margin-top:14px}
-.check{color:var(--green)}
-.unknown{color:var(--orange)}
-.bottom{margin-top:16px;color:var(--muted);font-size:11px;line-height:1.7;text-align:center}
-@media(max-width:500px){.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo-slot{min-height:160px;padding:8px}}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{padding-top:18px}.card{padding:15px}header{padding:17px 15px}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:wait;opacity:.65}
+.container{width:min(100% - 36px,1020px);margin:auto}
+.site-header{border-bottom:1px solid var(--stroke);background:#0b0b0d}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:25px 0}
+.wordmark{font-weight:900;font-size:clamp(23px,4vw,30px);letter-spacing:.12em;line-height:1}
+.tagline{font-size:10px;letter-spacing:.16em;color:var(--muted);margin-top:10px}
+.edition{color:var(--gold);border:1px solid #575047;border-radius:999px;padding:10px 13px;font-size:12px;white-space:nowrap}
+.hero{padding:66px 0 36px}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.24em;font-weight:650}
+h1{font-size:clamp(34px,7vw,62px);letter-spacing:-.045em;line-height:1.19;margin:20px 0 24px;font-weight:850}
+.hero-description{max-width:650px;color:#c3c0c5;font-size:clamp(16px,2.5vw,19px);line-height:1.9;margin:0}
+.signature{color:var(--gold);letter-spacing:.11em;font-size:12px;font-weight:700;margin:24px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:32px}
+.chip{border:1px solid var(--stroke);border-radius:999px;padding:9px 13px;color:#d1ced2;font-size:12px}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;margin-top:20px}
+.panel{border:1px solid var(--stroke);border-radius:24px;background:var(--surface);padding:25px;min-width:0}
+.panel h2{font-size:21px;margin:0 0 24px;letter-spacing:.025em}
+.label{display:block;color:var(--muted);font-size:13px;margin:21px 0 10px}
+.info{color:#c7c4c8;font-size:13px;line-height:1.9;margin:0}
+select,input[type=text],textarea{display:block;width:100%;background:#0c0c0f;border:1px solid #414047;border-radius:13px;color:var(--text);padding:14px 15px;min-height:52px;outline:none;font-size:15px}
+select:focus,input:focus,textarea:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:96px}
+.helper{color:var(--muted);font-size:12px;line-height:1.7}
+.category-callout{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#221e17;border:1px solid #675637;border-radius:12px;padding:11px 13px;margin:16px 0 14px;color:#f2dbad;font-size:12px;line-height:1.5}
+.category-callout strong{font-size:13px;white-space:nowrap}
+.progressline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0 17px;font-size:12px;color:#c9c7cc}
+.progressbar{height:5px;background:#29292f;border-radius:99px;overflow:hidden;margin-top:9px}
+.progressbar>span{display:block;height:100%;width:0;background:var(--gold);transition:width .2s ease}
+.photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.photo{border:1px dashed #55525a;border-radius:14px;background:var(--surface2);padding:11px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.photo.filled{border:1px solid #9f8757}
+.photo-no{color:var(--gold);font-size:11px;letter-spacing:.09em}
+.photo-name{font-weight:700;font-size:13px;min-height:20px}
+.photo-hint{font-size:11px;line-height:1.5;color:var(--muted);min-height:32px}
+.photo-image{height:100px;object-fit:contain;width:100%;background:#08080a;border-radius:8px;display:none}
+.photo.filled .photo-image{display:block}
+.pick{background:#28272d;color:#f0edf0;border:1px solid #47454c;border-radius:9px;padding:9px;text-align:center;font-size:12px;font-weight:650;position:relative;overflow:hidden;cursor:pointer}
+.pick input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;font-size:0}
+.remove{border:1px solid #69423f;color:var(--danger);background:transparent;border-radius:9px;padding:7px 9px;font-size:12px;display:none}
+.photo.filled .remove{display:block}
+.main-button{width:100%;min-height:54px;border:0;border-radius:13px;background:var(--gold);color:#17130d;font-size:16px;font-weight:850;margin-top:17px}
+.main-button:hover{background:var(--gold2)}
+.report-panel{margin-top:18px;display:none}
+.report-top{display:flex;gap:15px;align-items:center;margin:0 0 16px}
+.report-mark{width:68px;height:68px;border:2px solid var(--gold);color:var(--gold);border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:850;flex:none;text-align:center}
+.report-status{font-size:19px;font-weight:800;margin-bottom:7px}
+.report-meta{font-size:12px;color:var(--muted);line-height:1.5}
+.notice{border:1px solid #52462e;background:#292317;color:#f0d6a3;border-radius:12px;padding:13px 15px;line-height:1.7;font-size:12px}
+.report-body{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:14px;line-height:1.9;background:#0b0b0e;border:1px solid var(--stroke);border-radius:13px;padding:18px;margin:16px 0}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.secondary{background:#25252b;color:var(--text);border:1px solid #47474f;border-radius:11px;padding:11px 16px;font-size:13px;font-weight:700}
+footer{border-top:1px solid var(--stroke);padding:30px 0 40px;margin-top:45px;text-align:center;color:#97939a;font-size:11px;line-height:1.8}
+footer strong{display:block;color:var(--gold);letter-spacing:.15em;margin-bottom:8px}
+.build{display:block;margin-top:8px;font-size:10px;color:#79757c}
+@media(min-width:920px){.photos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.panel-grid{grid-template-columns:1fr}.hero{padding-top:48px}.panel{padding:22px}.header-inner{padding:23px 0}}
+@media(max-width:390px){.container{width:min(100% - 28px,1020px)}.tagline{font-size:9px;letter-spacing:.1em}.edition{padding:9px 10px;font-size:10px}.hero{padding-top:43px}.panel{padding:18px}}
 </style>
 </head>
+
 <body>
-<header>
-  <div>
-    <div class="brand">AUTHENT<span>I</span>Q</div>
-    <div class="sub">GLOBAL STREETWEAR AUTHENTICATION</div>
-  </div>
-  <div class="pill">AI 驗真 · 第一版</div>
+<header class="site-header">
+<div class="container header-inner">
+<div>
+<div class="wordmark">AUTHENTIQ</div>
+<div class="tagline">GLOBAL STREETWEAR AUTHENTICATION</div>
+</div>
+<div class="edition">AI 鑑真 · 第一版</div>
+</div>
 </header>
 
-<main>
+<main class="container">
 <section class="hero">
-  <div class="eyebrow">REAL STYLE. REAL VALUE.</div>
-  <h1>真正的風格，<br>不該被假貨定義。</h1>
-  <p>每一份熱愛，都值得被認真對待。讓科技看見細節，讓真實擁有價值。</p>
-  <div class="features">
-    <span class="feature">AI 品牌識別</span>
-    <span class="feature">最多 12 張照片</span>
-    <span class="feature">多角度分析</span>
-    <span class="feature">疑點整理</span>
-  </div>
+<div class="eyebrow">REAL STYLE. REAL VALUE.</div>
+<h1>真正的風格，<br>不該被假貨定義。</h1>
+<p class="hero-description">每一份熱愛，都值得被認真對待。<br>讓科技看見細節，讓真實擁有價值。</p>
+<p class="signature">AUTHENTIQ — TRUST WHAT YOU WEAR.</p>
+<div class="chips">
+<span class="chip">AI 自動識別品牌</span>
+<span class="chip">最多 12 張照片</span>
+<span class="chip">多角度分析</span>
+<span class="chip">疑點與證據整理</span>
+</div>
 </section>
 
-<div class="grid">
-<section class="card">
-  <h2>01 ／ 商品資料</h2>
-  <div class="label">品牌識別</div>
-  <p class="small">不需要自行選擇品牌。上傳商品照片後，AUTHENTIQ AI 會嘗試根據可見標誌、文字、標籤與商品細節識別品牌。</p>
+<div class="panel-grid">
+<section class="panel">
+<h2>01 ／ 商品資料</h2>
+<div class="label">品牌識別</div>
+<p class="info">不需要自行選擇品牌。上傳商品照片後，AUTHENTIQ AI 會嘗試根據可見標誌、文字、標籤與商品細節識別品牌。</p>
 
-  <label class="label" for="category">商品類型</label>
-  <select id="category">
-    <option>上衣／帽T</option>
-    <option>外套</option>
-    <option>褲子</option>
-    <option>球鞋</option>
-    <option>包包</option>
-    <option>帽子</option>
-    <option>配件</option>
-    <option>其他商品</option>
-  </select>
+<label class="label" for="category">商品類型</label>
+<select id="category">
+<option>上衣／帽T</option>
+<option>外套</option>
+<option>褲子</option>
+<option>球鞋</option>
+<option>包包</option>
+<option>帽子</option>
+<option>配件</option>
+<option>其他商品</option>
+</select>
 
-  <label class="label" for="year">大約年份（選填）</label>
-  <input id="year" placeholder="例如：2022 或不確定">
+<label class="label" for="year">大約年份（選填）</label>
+<input id="year" type="text" placeholder="例如：2022 或不確定" maxlength="60">
 
-  <label class="label" for="source">購買來源（選填）</label>
-  <select id="source">
-    <option>二手平台／社團</option>
-    <option>品牌官方／專櫃</option>
-    <option>授權零售商</option>
-    <option>朋友轉售</option>
-    <option>其他／不確定</option>
-  </select>
+<label class="label" for="source">購買來源（選填）</label>
+<select id="source">
+<option>二手平台／社團</option>
+<option>品牌官方／專櫃</option>
+<option>授權零售商</option>
+<option>朋友轉售</option>
+<option>禮物／贈送</option>
+<option>其他／不確定</option>
+</select>
 
-  <label class="label" for="notes">其他資訊（選填）</label>
-  <textarea id="notes" rows="3" placeholder="款式名稱、型號、賣家描述等"></textarea>
+<label class="label" for="notes">其他資訊（選填）</label>
+<textarea id="notes" placeholder="商品型號、款式名稱、賣家描述、你發現的疑點等" maxlength="1600"></textarea>
 </section>
 
-<section class="card">
-  <h2>02 ／ 上傳照片</h2>
-  <p class="slot-intro">每個格子對應一個商品部位。點選格子即可選擇照片；重要部位請優先拍清楚。最多 12 張，非每件商品都有的部位可以跳過。</p>
-
-  <div class="photo-grid" id="photoGrid"></div>
-
-  <div class="photo-count">
-    <span id="photoCount">已上傳 0 / 12 張</span>
-    <span>JPG／PNG／WebP</span>
-  </div>
-  <p class="small">照片會傳送至 AUTHENTIQ AI API 進行分析。請勿上傳包含個人證件、住址等敏感資訊的照片。</p>
-  <button class="primary" id="analyze" type="button">開始 AI 初步檢查</button>
-  <p class="small">AI 報告僅供初步外觀分析，不等同專業真偽鑑定，也不能保證真品或假貨。</p>
+<section class="panel">
+<h2>02 ／ 上傳商品照片</h2>
+<p class="info" id="photoInstructions">請依照商品類型上傳清楚的細節照片。</p>
+<div class="category-callout" id="selectedCategory" aria-live="polite">
+<span>目前商品類型</span><strong>上衣／帽T</strong>
+</div>
+<div class="progressline">
+<strong id="photoCount">已上傳 0 / 12 張</strong>
+<span>JPG · PNG · WebP</span>
+</div>
+<div class="progressbar"><span id="photoProgress"></span></div>
+<div class="photos" id="photoGrid"></div>
+<p class="helper">圖片會先在裝置上縮小，再傳到 AUTHENTIQ AI API。請避免上傳包含個人身分資料的照片。iPhone HEIC 照片若無法讀取，請先轉成 JPG。</p>
+<button type="button" class="main-button" id="analyze">開始 AI 商品分析 →</button>
+<p class="helper">AI 報告為照片與資料的初步分析，不等同實物專業鑑定，也不保證真偽。</p>
 </section>
 </div>
 
-<section class="card result" id="result">
-  <h2>03 ／ 初步檢查報告</h2>
-  <div class="result-head">
-    <div class="score" id="score">—</div>
-    <div>
-      <div class="status" id="status">檢查完成</div>
-      <small id="summary" class="small"></small>
-    </div>
-  </div>
-  <ul class="checklist" id="checks"></ul>
-  <div class="notice" id="notice"></div>
-  <pre class="report-text" id="reportText" style="display:none"></pre>
-  <button class="secondary" id="reset" type="button">重新檢查</button>
+<section class="panel report-panel" id="result" aria-live="polite">
+<h2>03 ／ AUTHENTIQ AI 分析報告</h2>
+<div class="report-top">
+<div class="report-mark" id="reportMark">AI</div>
+<div>
+<div class="report-status" id="reportStatus">正在準備分析</div>
+<div class="report-meta" id="reportMeta"></div>
+</div>
+</div>
+<div class="notice" id="reportNotice">所有結論都應有相應證據；證據不足時，應清楚說明限制。</div>
+<div class="report-body" id="reportBody" style="display:none"></div>
+<div class="actions">
+<button class="secondary" type="button" id="copyReport" hidden>複製完整報告</button>
+<button class="secondary" type="button" id="newCheck">重新開始</button>
+</div>
 </section>
-
-<div class="bottom">AUTHENTIQ 原型版 · AI 檢查僅供參考，不構成正品保證。真正驗真需結合款式資料、實物細節與可靠的專業判斷。</div>
 </main>
 
+<footer>
+<div class="container">
+<strong>AUTHENTIQ — TRUST WHAT YOU WEAR.</strong>
+AI 鑑真第一版｜以證據為本，尊重真實。<br>
+本服務提供初步輔助分析，無法取代品牌官方或專業實物鑑定。
+<span class="build">網站版本：AUTHENTIQ-20261017-DYNAMIC</span>
+</div>
+</footer>
+
 <script>
+'use strict';
+
 const API_URL = 'https://authentiq-api.arq3456.workers.dev/analyze';
-const analyzeButton = document.getElementById('analyze');
-const resultSection = document.getElementById('result');
-const reportText = document.getElementById('reportText');
-const MAX_PHOTOS = 12;
+const MAX_IMAGES = 12;
+const el = id => document.getElementById(id);
 
-const photoSlots = [
-  { title: '正面整體', desc: '完整拍攝商品正面', required: true },
-  { title: '背面整體', desc: '完整拍攝商品背面', required: true },
-  { title: '領口／領標', desc: '領口做工與領標', required: true },
-  { title: '品牌主標', desc: '品牌名稱、字體、縫法', required: true },
-  { title: '洗標／尺寸標', desc: '材質、產地、尺寸資訊', required: true },
-  { title: 'Logo／印花', desc: '印花、刺繡與圖案細節', required: true },
-  { title: '布料／材質', desc: '布面紋理與材質細節' },
-  { title: '車縫／接縫', desc: '縫線、收邊與做工' },
-  { title: '袖口／下擺', desc: '羅紋、袖口與下擺' },
-  { title: '五金／拉鍊', desc: '若商品有五金再拍' },
-  { title: '特殊細節 1', desc: '其他值得檢查的位置' },
-  { title: '特殊細節 2', desc: '補充角度或疑點' }
-];
+// 每種商品都有專屬的 12 個拍攝位置
+const slotTemplates = {
+ '上衣／帽T': [
+  ['正面整體','平放完整正面'],
+  ['背面整體','平放完整背面'],
+  ['領口細節','領口、羅紋與內側'],
+  ['品牌領標','品牌字體、刺繡與縫法'],
+  ['洗標／尺寸標','洗滌資訊、尺寸與產地'],
+  ['Logo／印花','胸前或背後圖案特寫'],
+  ['布料紋理','布面與織法近拍'],
+  ['肩線／側縫','接縫、針腳與收邊'],
+  ['袖口細節','袖口羅紋與車線'],
+  ['下擺車縫','下擺內外縫線'],
+  ['吊牌／貨號','有吊牌或商品編號才拍'],
+  ['其他特徵','特殊設計或可疑細節']
+ ],
+ '外套': [
+  ['正面整體','拉好外套拍正面'],
+  ['背面整體','完整背面及版型'],
+  ['領口／帽子','領型、帽緣與抽繩'],
+  ['品牌主標','領標或內側品牌標'],
+  ['洗標／尺寸標','材質、產地、型號'],
+  ['Logo／刺繡','圖案、刺繡近拍'],
+  ['拉鍊／拉頭','品牌刻字及拉鍊齒'],
+  ['鈕扣／五金','鈕扣、扣具與刻字'],
+  ['袖口／羅紋','袖口做工'],
+  ['口袋／內裡','口袋縫法、內襯'],
+  ['下擺／側縫','收邊及針腳'],
+  ['吊牌／特殊細節','商品碼或其他識別處']
+ ],
+ '褲子': [
+  ['正面整體','平放完整正面'],
+  ['背面整體','平放完整背面'],
+  ['腰頭／腰內','腰帶環與內側車縫'],
+  ['品牌標籤','腰後或內側品牌標'],
+  ['洗標／尺寸標','材質、產地與尺寸'],
+  ['扣子／拉鍊','刻字、拉鍊品牌'],
+  ['前口袋','袋口與縫線'],
+  ['後口袋','口袋版型與縫法'],
+  ['布料／刷色','織紋、刷色或印花'],
+  ['褲腳／下擺','褲腳摺邊車線'],
+  ['內側接縫','褲襠、側縫與內縫'],
+  ['吊牌／貨號','款式貨號或其他特徵']
+ ],
+ '球鞋': [
+  ['鞋身外側','左右鞋外側整體'],
+  ['鞋身內側','左右鞋內側整體'],
+  ['鞋頭細節','鞋頭材質與形狀'],
+  ['鞋舌／鞋標','鞋舌正反面及標籤'],
+  ['鞋墊／鞋內','鞋墊圖案及鞋內部'],
+  ['鞋底紋路','整個外底和刻字'],
+  ['後跟細節','後跟 Logo、縫線'],
+  ['中底／側邊','中底接合與印字'],
+  ['鞋帶／鞋孔','鞋帶、鞋孔與配件'],
+  ['尺寸標／貨號','內標、鞋碼與 SKU'],
+  ['鞋盒標籤','有鞋盒才拍條碼／型號'],
+  ['其他細節','左右鞋比對或特殊瑕疵']
+ ],
+ '包包': [
+  ['正面整體','完整正面輪廓'],
+  ['背面整體','完整背面輪廓'],
+  ['底部／底角','包底、四角磨損與車縫'],
+  ['品牌標誌','品牌 Logo 或字體特寫'],
+  ['內標／序號','內部標籤、序號或產地'],
+  ['內裡布料','內襯圖案及縫線'],
+  ['拉鍊／拉頭','拉鍊五金與刻字'],
+  ['扣具／金屬','五金顏色與細節'],
+  ['背帶／提把','接點、縫線與材質'],
+  ['皮革／面料','壓紋、紋理與質感'],
+  ['口袋／接縫','袋口及包身接縫'],
+  ['防塵袋／配件','有附屬品才拍']
+ ],
+ '帽子': [
+  ['正面整體','完整帽身正面'],
+  ['背面整體','背面及調節帶'],
+  ['側面輪廓','帽冠與帽簷形狀'],
+  ['品牌 Logo','刺繡、印花或標章'],
+  ['內側品牌標','內側主標與縫法'],
+  ['洗標／尺寸標','尺寸、產地與材質'],
+  ['帽簷細節','帽簷車線及弧度'],
+  ['帽冠車縫','帽頂接合及拼片'],
+  ['內側汗帶','汗帶材質與車縫'],
+  ['調整扣具','金屬扣或塑膠扣'],
+  ['布料紋理','布面與織法'],
+  ['吊牌／其他特徵','特殊圖案或貨號']
+ ],
+ '配件': [
+  ['正面整體','商品正面'],
+  ['背面整體','商品背面'],
+  ['品牌 Logo','標誌與文字特寫'],
+  ['刻字／序號','材質標、產品碼或序號'],
+  ['材質紋理','金屬、皮革、織品等'],
+  ['邊緣／收邊','接縫與表面處理'],
+  ['扣環／接口','有扣具或接口才拍'],
+  ['車縫／結構','有縫線或接合才拍'],
+  ['尺寸／規格標','可辨識尺寸與規格'],
+  ['包裝／吊牌','有包裝才拍'],
+  ['配件完整組','附件與商品合照'],
+  ['特殊細節','異常或獨特位置']
+ ],
+ '其他商品': [
+  ['正面整體','商品完整正面'],
+  ['背面整體','商品完整背面'],
+  ['側面整體','商品側面輪廓'],
+  ['品牌標誌','品牌名稱、Logo'],
+  ['標籤／序號','尺寸、產地、型號'],
+  ['圖案／印字','印刷圖樣或文字'],
+  ['主要材質','材質紋路與表面'],
+  ['接縫／結構','接合處或車縫'],
+  ['邊緣細節','邊角及收邊'],
+  ['五金／零件','商品有此部位才拍'],
+  ['包裝／附件','有盒子或吊牌才拍'],
+  ['特殊細節','其他重要或可疑處']
+ ]
+};
 
-const slotFiles = Array(MAX_PHOTOS).fill(null);
-const photoGrid = document.getElementById('photoGrid');
+const categoryTips = {
+ '上衣／帽T':'上衣拍攝重點：領標、洗標、Logo、布料與車縫；不用拍鞋舌或鞋底。',
+ '外套':'外套拍攝重點：品牌主標、內裡、拉鍊、五金與袖口。',
+ '褲子':'褲子拍攝重點：腰頭、品牌標、洗標、口袋與褲腳。',
+ '球鞋':'球鞋拍攝重點：鞋舌、尺寸標、鞋底、鞋墊與左右鞋；沒有鞋盒可跳過。',
+ '包包':'包包拍攝重點：內標、五金、內裡、皮革紋理與背帶。',
+ '帽子':'帽子拍攝重點：帽簷、內側品牌標、汗帶、刺繡與調整扣。',
+ '配件':'配件拍攝重點：品牌標誌、刻字、材質、結構及扣具；依實物略過不適用項目。',
+ '其他商品':'依商品實際構造拍攝，沒有的部位可略過，盡量提供清楚的品牌及型號資訊。'
+};
 
-function renderPhotoSlots() {
-  photoGrid.replaceChildren();
+let currentCategory = el('category').value;
+let currentSlots = slotTemplates[currentCategory];
+const files = Array(MAX_IMAGES).fill(null);
+const previews = Array(MAX_IMAGES).fill(null);
+const grid = el('photoGrid');
+let running = false;
 
-  photoSlots.forEach((slot, index) => {
-    const card = document.createElement('div');
-    card.className = 'photo-slot';
+function updateProgress() {
+ const n = files.filter(Boolean).length;
+ el('photoCount').textContent = `已上傳 ${n} / 12 張`;
+ el('photoProgress').style.width = (n / 12 * 100) + '%';
+}
 
-    const number = document.createElement('div');
-    number.className = 'slot-number';
-    number.textContent = `${String(index + 1).padStart(2, '0')} ／ ${slot.required ? '建議必拍' : '選填'}`;
+function resetPhotoFiles() {
+ files.fill(null);
+ previews.forEach(uri => {
+  if (uri) URL.revokeObjectURL(uri);
+ });
+ previews.fill(null);
+}
 
-    const title = document.createElement('div');
-    title.className = 'slot-title';
-    title.textContent = slot.title;
+function refreshCategoryGuide() {
+ el('selectedCategory').querySelector('strong').textContent = currentCategory;
+ el('photoInstructions').textContent =
+  categoryTips[currentCategory] +
+  ' 每格最多一張，無此部位可跳過，不必拍滿 12 張。';
+}
 
-    const desc = document.createElement('div');
-    desc.className = 'slot-desc';
-    desc.textContent = slot.desc;
+function makeSlots() {
+ grid.textContent = '';
 
-    const preview = document.createElement('img');
-    preview.className = 'slot-preview';
-    preview.alt = `${slot.title}照片預覽`;
+ currentSlots.forEach(([name, hint], index) => {
+  const item = document.createElement('div');
+  item.className = 'photo';
 
-    const label = document.createElement('label');
-    label.className = 'slot-pick';
+  const no = document.createElement('div');
+  no.className = 'photo-no';
+  no.textContent = String(index + 1).padStart(2, '0') + ' / 12';
 
-    const labelText = document.createElement('span');
-    labelText.textContent = '＋ 選擇照片';
+  const title = document.createElement('div');
+  title.className = 'photo-name';
+  title.textContent = name;
 
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/jpeg,image/png,image/webp';
-    input.setAttribute('aria-label', `上傳${slot.title}`);
+  const detail = document.createElement('div');
+  detail.className = 'photo-hint';
+  detail.textContent = hint;
 
-    const remove = document.createElement('button');
-    remove.type = 'button';
-    remove.className = 'slot-remove';
-    remove.textContent = '移除此照片';
+  const img = document.createElement('img');
+  img.className = 'photo-image';
+  img.alt = name + '預覽';
 
-    input.addEventListener('change', () => {
-      const file = input.files && input.files[0];
-      if (!file) return;
+  const pick = document.createElement('label');
+  pick.className = 'pick';
 
-      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-        alert('請使用 JPG、PNG 或 WebP 格式。iPhone 的 HEIC 請先轉成 JPG。');
-        input.value = '';
-        return;
-      }
+  const pickText = document.createElement('span');
+  pickText.textContent = '＋ 選擇照片';
 
-      if (preview.src.startsWith('blob:')) {
-        URL.revokeObjectURL(preview.src);
-      }
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/jpeg,image/png,image/webp';
+  input.setAttribute('aria-label', '選擇' + name + '照片');
 
-      slotFiles[index] = file;
-      preview.src = URL.createObjectURL(file);
-      preview.style.display = 'block';
-      card.classList.add('filled');
-      labelText.textContent = '↻ 更換照片';
-      remove.style.display = 'block';
-      updatePhotoCount();
-    });
+  const remove = document.createElement('button');
+  remove.type = 'button';
+  remove.className = 'remove';
+  remove.textContent = '移除照片';
 
-    remove.addEventListener('click', () => {
-      if (preview.src.startsWith('blob:')) {
-        URL.revokeObjectURL(preview.src);
-      }
+  function clear() {
+   if (previews[index]) URL.revokeObjectURL(previews[index]);
+   previews[index] = null;
+   files[index] = null;
+   input.value = '';
+   img.removeAttribute('src');
+   item.classList.remove('filled');
+   pickText.textContent = '＋ 選擇照片';
+   updateProgress();
+  }
 
-      slotFiles[index] = null;
-      input.value = '';
-      preview.removeAttribute('src');
-      preview.style.display = 'none';
-      card.classList.remove('filled');
-      labelText.textContent = '＋ 選擇照片';
-      remove.style.display = 'none';
-      updatePhotoCount();
-    });
+  input.addEventListener('change', () => {
+   const file = input.files?.[0];
+   if (!file) return;
 
-    label.append(labelText, input);
-    card.append(number, title, desc, preview, label, remove);
-    photoGrid.appendChild(card);
+   if (!['image/jpeg','image/png','image/webp'].includes(file.type)) {
+    alert('目前只接受 JPG、PNG 或 WebP。請先將 HEIC 轉成 JPG。');
+    input.value = '';
+    return;
+   }
+
+   if (previews[index]) URL.revokeObjectURL(previews[index]);
+
+   files[index] = file;
+   previews[index] = URL.createObjectURL(file);
+   img.src = previews[index];
+   item.classList.add('filled');
+   pickText.textContent = '↻ 更換照片';
+   updateProgress();
   });
+
+  remove.addEventListener('click', clear);
+  pick.append(pickText, input);
+  item.append(no, title, detail, img, pick, remove);
+  grid.appendChild(item);
+ });
+
+ updateProgress();
 }
 
-function updatePhotoCount() {
-  const count = slotFiles.filter(Boolean).length;
-  document.getElementById('photoCount').textContent = `已上傳 ${count} / ${MAX_PHOTOS} 張`;
-}
+// 選擇不同商品時，自動更新拍攝介面
+el('category').addEventListener('change', () => {
+ const next = el('category').value;
+ if (next === currentCategory) return;
 
-renderPhotoSlots();
+ if (
+  files.some(Boolean) &&
+  !window.confirm('切換商品類型會清除目前已選的照片，確定要切換嗎？')
+ ) {
+  el('category').value = currentCategory;
+  return;
+ }
 
-async function imageToDataUrl(file) {
-  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-    throw new Error('目前請使用 JPG、PNG 或 WebP 圖片。iPhone 的 HEIC 請先轉成 JPG 再上傳。');
-  }
-
-  let bitmap;
-  try {
-    bitmap = await createImageBitmap(file);
-  } catch (_) {
-    throw new Error('無法讀取這張圖片，請改用 JPG、PNG 或 WebP 格式。');
-  }
-
-  const maxSide = 1200;
-  const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
-  const canvas = document.createElement('canvas');
-  canvas.width = Math.max(1, Math.round(bitmap.width * scale));
-  canvas.height = Math.max(1, Math.round(bitmap.height * scale));
-
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  bitmap.close();
-
-  const dataUrl = canvas.toDataURL('image/jpeg', 0.78);
-
-  if (dataUrl.length > 3900000) {
-    throw new Error('圖片仍然太大，請選擇較小的照片再試。');
-  }
-
-  return dataUrl;
-}
-
-function addReportLine(text, className = 'unknown') {
-  const li = document.createElement('li');
-  const icon = document.createElement('span');
-  icon.className = className;
-  icon.textContent = className === 'check' ? '✓' : '•';
-
-  const body = document.createElement('span');
-  body.textContent = text;
-
-  li.append(icon, body);
-  document.getElementById('checks').appendChild(li);
-}
-
-analyzeButton.addEventListener('click', async () => {
-  const files = slotFiles
-    .map((file, index) => file ? ({ file, label: photoSlots[index].title }) : null)
-    .filter(Boolean);
-
-  const category = document.getElementById('category').value;
-  const year = document.getElementById('year').value.trim();
-  const source = document.getElementById('source').value;
-  const notes = document.getElementById('notes').value.trim();
-
-  if (!files.length) {
-    alert('請先上傳至少一張商品照片。');
-    return;
-  }
-
-  if (files.length > MAX_PHOTOS) {
-    alert('一次最多分析 12 張照片。');
-    return;
-  }
-
-  analyzeButton.disabled = true;
-  analyzeButton.textContent = 'AI 分析中，請稍候…';
-  document.getElementById('checks').replaceChildren();
-  reportText.style.display = 'none';
-  reportText.textContent = '';
-  resultSection.style.display = 'block';
-  document.getElementById('score').textContent = '…';
-  document.getElementById('status').textContent = '正在分析商品照片';
-  document.getElementById('summary').textContent = '照片會傳送至 AUTHENTIQ API 進行 AI 外觀分析。';
-  document.getElementById('notice').textContent = '分析結果僅供初步參考；AI 不能只憑照片保證真偽。';
-  resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  try {
-    const images = [];
-
-    for (const item of files) {
-      images.push(await imageToDataUrl(item.file));
-    }
-
-    const product = [
-      '品牌識別：請根據所有商品照片嘗試識別品牌，並以可見標誌、文字或標籤作為依據。若無法可靠識別，請明確標示「無法確認品牌」，不得猜測。',
-      `商品類型：${category}`,
-      `款式／年份：${year || '未提供'}`,
-      `購買來源：${source}`,
-      `補充資訊：${notes || '未提供'}`,
-      '照片部位對照：',
-      ...files.map((item, index) => `${index + 1}. ${item.label}`),
-      '請依照上述順序逐張檢查圖片，將觀察到的細節與照片部位對應。請區分可直接觀察的事實與推測；看不清楚的地方請明確說明，不可自行捏造。請列出疑點、支持與反對判斷的證據，以及目前無法確認的部分。'
-    ].join('\n');
-
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ category, product, images })
-    });
-
-    const data = await response.json().catch(() => ({}));
-
-    if (!response.ok || data.status !== 'success' || !data.report) {
-      const details = data.details ? `\n詳細資訊：${data.details}` : '';
-      throw new Error((data.error || `請求失敗（HTTP ${response.status}）`) + details);
-    }
-
-    document.getElementById('score').textContent = '待核';
-    document.getElementById('status').textContent = 'AI 初步分析完成';
-    document.getElementById('summary').textContent = `${category} · ${images.length} 張照片`;
-
-    addReportLine('AI 已成功分析照片並產生報告。', 'check');
-    addReportLine('品牌識別與真偽判斷仍可能出錯，請核對報告所引用的照片證據。', 'unknown');
-
-    reportText.textContent = data.report;
-    reportText.style.display = 'block';
-
-    document.getElementById('notice').textContent =
-      '重要提醒：AI 不能只憑照片保證真偽。請核對報告是否有具體可見的依據；若證據不足，應維持待核或無法判定。';
-
-  } catch (error) {
-    document.getElementById('score').textContent = '—';
-    document.getElementById('status').textContent = '分析未完成';
-    document.getElementById('summary').textContent = '請依下方訊息排除問題後重試。';
-
-    addReportLine(error.message || '發生未知錯誤。', 'unknown');
-
-    document.getElementById('notice').textContent =
-      '若出現額度、API 或連線錯誤，請保留錯誤內容以便排查；不要把 API 金鑰貼到網站或聊天中。';
-
-  } finally {
-    analyzeButton.disabled = false;
-    analyzeButton.textContent = '開始 AI 初步檢查';
-  }
+ resetPhotoFiles();
+ currentCategory = next;
+ currentSlots = slotTemplates[next];
+ refreshCategoryGuide();
+ makeSlots();
+ el('result').style.display = 'none';
 });
 
-document.getElementById('reset').addEventListener('click', () => {
-  resultSection.style.display = 'none';
+// 照片壓縮
+function loadImage(file) {
+ return new Promise((resolve, reject) => {
+  const uri = URL.createObjectURL(file);
+  const img = new Image();
 
-  slotFiles.fill(null);
-  renderPhotoSlots();
-  updatePhotoCount();
+  img.onload = () => {
+   URL.revokeObjectURL(uri);
+   resolve(img);
+  };
 
-  document.getElementById('year').value = '';
-  document.getElementById('notes').value = '';
-  reportText.style.display = 'none';
-  reportText.textContent = '';
+  img.onerror = () => {
+   URL.revokeObjectURL(uri);
+   reject(new Error('無法讀取其中一張照片，請先轉成 JPG 再試。'));
+  };
 
-  document.getElementById('category').focus();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  img.src = uri;
+ });
+}
+
+async function compress(file) {
+ const image = await loadImage(file);
+ const scale = Math.min(
+  1,
+  1200 / Math.max(image.naturalWidth, image.naturalHeight)
+ );
+
+ const canvas = document.createElement('canvas');
+ canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+ canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+
+ const ctx = canvas.getContext('2d');
+ if (!ctx) throw new Error('裝置不支援圖片處理。');
+
+ ctx.fillStyle = '#ffffff';
+ ctx.fillRect(0, 0, canvas.width, canvas.height);
+ ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+ const data = canvas.toDataURL('image/jpeg', 0.78);
+
+ if (data.length > 3900000) {
+  throw new Error('有照片檔案過大，請縮小圖片再試。');
+ }
+
+ return data;
+}
+
+function displayStatus(status, meta, mark, notice) {
+ el('result').style.display = 'block';
+ el('reportStatus').textContent = status;
+ el('reportMeta').textContent = meta || '';
+ el('reportMark').textContent = mark || 'AI';
+ el('reportNotice').textContent = notice || '';
+ el('reportBody').style.display = 'none';
+ el('reportBody').textContent = '';
+ el('copyReport').hidden = true;
+ el('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// 顯示 AI API 回傳的判斷提示
+function verdictFrom(report, apiVerdict) {
+ const direct = String(apiVerdict || '');
+ const first = String(report || '').slice(0, 300);
+
+ if (
+  /假貨|仿品|counterfeit/i.test(direct) ||
+  /最終(?:結論|判定)[：:\s*]*(?:\*\*)?假貨/.test(first)
+ ) return '疑似假貨';
+
+ if (
+  /正品|真品|authentic/i.test(direct) ||
+  /最終(?:結論|判定)[：:\s*]*(?:\*\*)?正品/.test(first)
+ ) return '支持正品';
+
+ return '待核對';
+}
+
+// AI 分析
+el('analyze').addEventListener('click', async () => {
+ if (running) return;
+
+ const selected = files
+  .map((file, index) => file ? {file, index} : null)
+  .filter(Boolean);
+
+ if (!selected.length) {
+  alert('請先上傳至少一張商品照片。');
+  return;
+ }
+
+ running = true;
+ const button = el('analyze');
+ button.disabled = true;
+ el('category').disabled = true;
+ button.textContent = '正在整理照片與 AI 分析…';
+
+ displayStatus(
+  '正在分析商品照片',
+  `已選擇 ${selected.length} 張照片`,
+  '…',
+  '此流程可能需要一些時間，請暫時保持頁面開啟。'
+ );
+
+ const controller = new AbortController();
+ const timeout = setTimeout(() => controller.abort(), 180000);
+
+ try {
+  const images = [];
+
+  for (const {file} of selected) {
+   images.push(await compress(file));
+  }
+
+  const total = images.reduce((sum, s) => sum + s.length, 0);
+  if (total > 29000000) {
+   throw new Error('照片總大小超過限制，請減少照片或使用較小圖片。');
+  }
+
+  const category = currentCategory;
+
+  const product = [
+   '請根據商品照片自動識別品牌；無可靠依據則寫「無法確認品牌」，不可猜測。',
+   '商品類型：' + category,
+   '大約年份：' + (el('year').value.trim() || '未提供'),
+   '購買來源：' + el('source').value,
+   '其他資訊：' + (el('notes').value.trim() || '未提供'),
+
+   // 重要：傳給 AI 的照片名稱會跟著商品類型改變
+   '照片順序：' + selected
+    .map(({index}, i) => `${i + 1}.${currentSlots[index][0]}`)
+    .join('；'),
+
+   '請根據每張實際可見細節與可核對的商品資訊比較，區分觀察事實與推論，說明正反證據。證據支持時明確給出正品或假貨結論，關鍵證據不足時才說明無法判定；不能因找不到官方商品頁就認定假貨，也不能因沒有明顯瑕疵就認定正品。'
+  ].join('\n');
+
+  const response = await fetch(API_URL, {
+   method: 'POST',
+   headers: {'Content-Type':'application/json'},
+   body: JSON.stringify({category, product, images}),
+   signal: controller.signal
+  });
+
+  const data = await response.json().catch(() => null);
+
+  if (!response.ok) {
+   throw new Error(
+    (data?.error || `API 回應錯誤（HTTP ${response.status}）`) +
+    (data?.details ? '：' + data.details : '')
+   );
+  }
+
+  const report = typeof data?.report === 'string' ? data.report : '';
+
+  if (!report.trim()) {
+   throw new Error('API 已回應，但沒有收到完整的文字分析報告。');
+  }
+
+  const marker = verdictFrom(report, data?.verdict);
+
+  el('reportStatus').textContent = '分析完成';
+  el('reportMeta').textContent =
+   `${category} · ${selected.length} 張照片 · ${marker}`;
+  el('reportMark').textContent = '完成';
+  el('reportNotice').textContent =
+   '請以完整報告及證據為準；AI 分析不等於品牌官方或專家實物鑑定。';
+  el('reportBody').textContent = report;
+  el('reportBody').style.display = 'block';
+  el('copyReport').hidden = false;
+
+ } catch (err) {
+  const msg = err?.name === 'AbortError'
+   ? '分析逾時（3 分鐘），請稍後重試。'
+   : (err?.message || '發生未知錯誤。');
+
+  el('reportStatus').textContent = '分析未完成';
+  el('reportMeta').textContent = '尚未取得可靠的分析結果';
+  el('reportMark').textContent = '!';
+  el('reportNotice').textContent =
+   msg + ' 請檢查網路連線及 Cloudflare Worker。';
+
+ } finally {
+  clearTimeout(timeout);
+  running = false;
+  button.disabled = false;
+  el('category').disabled = false;
+  button.textContent = '開始 AI 商品分析 →';
+ }
 });
+
+// 複製分析報告
+el('copyReport').addEventListener('click', async () => {
+ const text = el('reportBody').textContent;
+
+ try {
+  await navigator.clipboard.writeText(text);
+  el('copyReport').textContent = '已複製 ✓';
+
+  setTimeout(() => {
+   el('copyReport').textContent = '複製完整報告';
+  }, 1800);
+ } catch (_) {
+  alert('無法自動複製，請長按報告內容選取並複製。');
+ }
+});
+
+// 重新開始
+el('newCheck').addEventListener('click', () => {
+ if (running) return;
+
+ resetPhotoFiles();
+ makeSlots();
+
+ el('year').value = '';
+ el('notes').value = '';
+ el('result').style.display = 'none';
+
+ window.scrollTo({top:0,behavior:'smooth'});
+});
+
+// 網站初始化
+refreshCategoryGuide();
+makeSlots();
 </script>
 </body>
 </html>
