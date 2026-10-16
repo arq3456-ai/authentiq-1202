@@ -72,8 +72,8 @@ button{border:0;border-radius:12px;padding:13px 16px;font-weight:750;font-size:1
 <main>
 <section class="hero">
   <div class="eyebrow">REAL STYLE. REAL VALUE.</div>
-  <h1>讓每一件潮流單品，<br>買得更有底氣。</h1>
-  <p>上傳商品照片，讓 AI 嘗試識別品牌並檢查商品細節，整理疑點與分析結果。品牌不需要自行選擇。</p>
+  <h1>真正的風格，<br>不該被假貨定義。</h1>
+  <p>每一份熱愛，都值得被認真對待。讓科技看見細節，讓真實擁有價值。</p>
   <div class="features">
     <span class="feature">AI 品牌識別</span>
     <span class="feature">最多 12 張照片</span>
@@ -85,9 +85,8 @@ button{border:0;border-radius:12px;padding:13px 16px;font-weight:750;font-size:1
 <div class="grid">
 <section class="card">
   <h2>01 ／ 商品資料</h2>
-
   <div class="label">品牌識別</div>
-  <p class="small">不需要自行選擇品牌。上傳商品照片後，AUTHENTIQ AI 會嘗試根據可見標誌、文字、標籤與商品細節識別品牌。如果照片不足以支持可靠判斷，AI 應說明「無法確認品牌」，而不是猜測。此功能仍可能辨識錯誤。</p>
+  <p class="small">不需要自行選擇品牌。上傳商品照片後，AUTHENTIQ AI 會嘗試根據可見標誌、文字、標籤與商品細節識別品牌。</p>
 
   <label class="label" for="category">商品類型</label>
   <select id="category">
@@ -127,7 +126,6 @@ button{border:0;border-radius:12px;padding:13px 16px;font-weight:750;font-size:1
     <span id="photoCount">已上傳 0 / 12 張</span>
     <span>JPG／PNG／WebP</span>
   </div>
-
   <p class="small">照片會傳送至 AUTHENTIQ AI API 進行分析。請勿上傳包含個人證件、住址等敏感資訊的照片。</p>
   <button class="primary" id="analyze" type="button">開始 AI 初步檢查</button>
   <p class="small">AI 報告僅供初步外觀分析，不等同專業真偽鑑定，也不能保證真品或假貨。</p>
@@ -335,7 +333,6 @@ analyzeButton.addEventListener('click', async () => {
 
   analyzeButton.disabled = true;
   analyzeButton.textContent = 'AI 分析中，請稍候…';
-
   document.getElementById('checks').replaceChildren();
   reportText.style.display = 'none';
   reportText.textContent = '';
@@ -389,6 +386,7 @@ analyzeButton.addEventListener('click', async () => {
 
     document.getElementById('notice').textContent =
       '重要提醒：AI 不能只憑照片保證真偽。請核對報告是否有具體可見的依據；若證據不足，應維持待核或無法判定。';
+
   } catch (error) {
     document.getElementById('score').textContent = '—';
     document.getElementById('status').textContent = '分析未完成';
@@ -398,6 +396,7 @@ analyzeButton.addEventListener('click', async () => {
 
     document.getElementById('notice').textContent =
       '若出現額度、API 或連線錯誤，請保留錯誤內容以便排查；不要把 API 金鑰貼到網站或聊天中。';
+
   } finally {
     analyzeButton.disabled = false;
     analyzeButton.textContent = '開始 AI 初步檢查';
@@ -413,7 +412,6 @@ document.getElementById('reset').addEventListener('click', () => {
 
   document.getElementById('year').value = '';
   document.getElementById('notes').value = '';
-
   reportText.style.display = 'none';
   reportText.textContent = '';
 
